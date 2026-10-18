@@ -26,7 +26,7 @@
     if (!CFG.clientId || /PASTE/.test(CFG.clientId)) throw new Error("Setup not finished: open config.js and paste your Application (client) ID.");
     if (!window.msal || !msal.createNestablePublicClientApplication) throw new Error("Sign-in library did not load (msal-browser.min.js missing).");
     pca = await msal.createNestablePublicClientApplication({
-      auth: { clientId: CFG.clientId, authority: "https://login.microsoftonline.com/organizations" },
+      auth: { clientId: CFG.clientId, authority: "https://login.microsoftonline.com/" + (CFG.tenantId || "organizations") },
       cache: { cacheLocation: "localStorage" }
     });
   }
